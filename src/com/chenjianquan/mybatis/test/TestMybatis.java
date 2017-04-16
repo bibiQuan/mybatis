@@ -40,8 +40,12 @@ public class TestMybatis {
 	public void test2() throws IOException{
 		
 		SqlSession session = getSqlSessionFactory().openSession();
-		EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
-		Employee employee = employeeMapper.getEmployeeById(1);
-		System.out.println(employee);
+		try{
+			EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+			Employee employee = employeeMapper.getEmployeeById(1);
+			System.out.println(employee);
+		}finally{
+			session.close();
+		}
 	}
 }
