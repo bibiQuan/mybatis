@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import com.chenjianquan.mybatis.bean.Employee;
 import com.chenjianquan.mybatis.dao.EmployeeMapper;
+import com.chenjianquan.mybatis.dao.EmployeeMapperAnnotation;
 
 public class TestMybatis {
 
@@ -43,6 +44,18 @@ public class TestMybatis {
 		try{
 			EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
 			Employee employee = employeeMapper.getEmployeeById(1);
+			System.out.println(employee);
+		}finally{
+			session.close();
+		}
+	}
+	
+	@Test
+	public void test3() throws IOException{
+		SqlSession session = getSqlSessionFactory().openSession();
+		try{
+			EmployeeMapperAnnotation employeeMapperAnnotation = session.getMapper(EmployeeMapperAnnotation.class);
+			Employee employee = employeeMapperAnnotation.getEmployeeById(1);
 			System.out.println(employee);
 		}finally{
 			session.close();
